@@ -1,0 +1,28 @@
+// Settings: Global
+// ============================================================================
+
+// Font sizes
+// $font-size--small: 12px;
+// $font-size--regular: 16px;
+// $font-size--medium: 24px;
+// $font-size--large: 32px;
+// $font-size--x-large: 48px;
+// $font-size--xx-large: 64px;
+// $font-size--xxx-large: 96px;
+
+// Create vendor-prefixed CSS - @include vendor(border-radius, 4px);
+@mixin vendor($property, $value...) {
+  -webkit-#{$property}:$value;
+  -moz-#{$property}:$value;
+  -ms-#{$property}:$value;
+  -o-#{$property}:$value;
+  #{$property}:$value;
+}
+
+// Breakpoints
+$mobile-small: 240px;
+$mobile-large: 320px;
+$tablet-small: 500px;
+$tablet-large: 768px;
+$screen-small: 1024px;
+$screen-large: 1280px;

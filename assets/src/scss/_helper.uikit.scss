@@ -1,0 +1,39 @@
+/* Helper: UI-Kit
+	========================================================================== */
+
+.ui-list {
+	list-style: none;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.btn-cta {
+	padding: 12px 24px;
+	color: #fff;
+	background-color: $color-cta;
+	border-radius: 30px;
+	border: 0;
+	&:hover {
+		color: #fff;
+		background-color: #61ac34;
+	}
+}
+
+.btn-cta--active {
+	padding: 10px 24px;
+	color: $color-dark;
+	background-color: #fff;
+	border-radius: 30px;
+	border: 2px solid $color-second;
+	&:hover {
+		color: #fff;
+		background-color: $color-cta;
+		border-color: $color-cta;
+	}
+}

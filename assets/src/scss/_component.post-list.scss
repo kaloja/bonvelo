@@ -1,0 +1,147 @@
+/* Post list
+  ========================================================================== */
+
+.post-list {
+	margin-top: 72px;
+	margin-bottom: 72px;
+}
+
+.post-list_list {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0;
+	margin-right: -12px;
+	margin-left: -12px;
+}
+
+.post-list_item {
+	display: flex;
+	width: 100%;
+	padding-right: 12px;
+	padding-bottom: 24px;
+	padding-left: 12px;
+  @media screen and (min-width: $tablet-small) {
+    width: 50%;
+  }
+  @media screen and (min-width: $screen-small) {
+    width: 33.333333%;
+  }
+}
+
+.post-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	background-color: #fff;
+}
+
+.post-card_img {
+	width: 100%;
+	height: 260px;
+	line-height: 0;
+	border-bottom: 6px solid #eee;	
+}
+
+.post-card_body {
+	display: flex;
+	flex: 1 0 auto;
+	flex-direction: column;
+	padding: 24px;
+}
+
+.post-card_footer {
+	padding-top: 16px;
+	padding-right: 16px;
+	padding-bottom: 16px;
+	padding-left: 24px;
+	border-top: 1px solid #eee;
+}
+
+.post-card_price {
+	position: absolute;
+	top: 200px;
+	left: -6px;
+	width: 110px;
+	height: 110px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #fff;
+	background-color: $color-second;
+	border-radius: 110px;
+	border: 6px solid #eee;
+}
+
+.currancy {
+	font-size: 12px;
+	font-weight: 600;
+	color: #fff;
+	text-transform: lowercase;
+}
+
+.price-wrap {
+	position: relative;
+	top: 38px;
+	text-align: center;
+}
+
+.size-wrap {
+	position: relative;
+	top: 17px;
+	text-align: center;
+}
+
+.post-card_size {
+	position: absolute;
+	top: 224px;
+	right: -6px;
+	width: 64px;
+	height: 64px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #fff;
+	background-color: $color-main--light;
+	border-radius: 64px;
+	border: 6px solid #eee;
+}
+
+.post-card_title {
+	padding-bottom: 12px;
+	margin-top: 48px;
+	margin-bottom: 0;
+	font-size: 18px;
+	text-transform: uppercase;
+	a {
+		color: $color-dark;
+		text-decoration: none;
+	}
+}
+
+.post-card_user {
+	float: left;
+	font-size: 12px;
+	a {
+		color: $color-second;
+		text-decoration: none;
+	}
+}
+
+.post-card_time {
+	float: right;
+	font-size: 12px;
+}
+
+.demo {
+	margin-bottom: 72px;
+}
+
+.demo-bar {
+	font-size: 14px;
+	color: $color-dark;
+	text-transform: uppercase;
+	padding-bottom: 6px;
+	margin-top: 48px;
+	margin-bottom: 24px;
+	border-bottom: 2px solid $color-main--light;
+}
+

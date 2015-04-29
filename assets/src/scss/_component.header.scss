@@ -1,0 +1,53 @@
+/* Component: Header
+  ========================================================================== */
+
+.header {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 80px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+}
+
+.logo {
+  float: left;
+  width: 100px;
+  img {
+    height: 26px;
+  }
+}
+
+.site-nav {
+  float: right;
+  margin-top: -3px;
+}
+
+.site-nav_list {
+  padding: 0;
+  margin: 0;
+}
+
+.site-nav_item {
+  display: inline-block;
+  margin-right: 24px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.site-nav_link {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: $color-dark;
+  text-decoration: none;
+  text-transform: uppercase;
+  outline: none;
+  &:hover {
+    color: $color-second;
+  }
+}

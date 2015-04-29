@@ -1,0 +1,26 @@
+// Component: Typography
+// ============================================================================
+html {
+	font-size: 16px;
+	font-weight: 300;
+	font-family: 'Proxima Nova', 'Roboto', sans-serif;
+	//line-height: 1.5;
+	color: $color-dark;
+}
+
+p {
+	margin: 0;
+}
+
+h4 {
+	margin-top: 0;
+	margin-bottom: 12px;
+	font-size: 16px;
+	font-weight: 400;
+	// text-transform: uppercase;
+}
+
+// p + p {
+// 	margin-top: 24px;
+// 	margin-bottom: 0;
+// }

@@ -1,0 +1,66 @@
+/* Signup
+  ========================================================================== */
+
+.signup {
+	max-width: 400px;
+	margin: 72px auto 0;
+}
+
+.signup_help {
+	margin: 24px auto;
+	text-align: center;
+}
+
+.signup_input {
+  width: 100%;
+  padding: 20px 16px;
+  margin-right: 1px;
+  margin-bottom: 2px;
+  margin-left: 1px;
+  border: 0;
+  background-color: #fff;
+  &::-webkit-input-placeholder {
+    font-weight: 300;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    font-weight: 300;
+  }
+
+  &::-moz-placeholder {  /* Firefox 19+ */
+    font-weight: 300;
+  }
+
+  &:-ms-input-placeholder {
+    font-weight: 300;
+  }
+}
+
+.signup_copy {
+	display: inline;
+	margin-bottom: 24px;
+}
+
+.signup_login--form {
+	display: inline;
+}
+
+.signup_login--btn {
+	padding: 0 0 0 4px;
+	color: $color-second;
+	background-color: #eee;
+	border: 0;
+  outline: none;
+}
+
+.signup_terms {
+  padding-top: 6px;
+  font-size: 12px;
+  text-align: center;
+  border-top: 1px solid #e3e3e3;
+}
+
+.signup_link {
+  color: $color-second;
+  text-decoration: none;
+}

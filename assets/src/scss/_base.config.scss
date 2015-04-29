@@ -1,0 +1,69 @@
+/* Config
+  ========================================================================== */
+
+html {
+  background-color: #eee;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+*,
+:after,
+:before {
+  box-sizing:inherit;
+}
+
+.wrapper {
+  max-width: 1280px;
+  padding: {
+    right: 24px;
+    left: 24px;
+  }
+  margin: {
+    right: auto;
+    left: auto;
+  }
+  @media screen and (min-width: $tablet-large) {
+    padding: {
+      right: 48px;
+      left: 48px;
+    }
+  }
+  // @media screen and (min-width: $screen-small) {
+  //   padding: {
+  //     right: 64px;
+  //     left: 64px;
+  //   }
+  // }
+}
+
+.wrapper--flex {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  max-width: 1280px;
+  padding: {
+    right: 24px;
+    left: 24px;
+  }
+  margin: {
+    right: auto;
+    left: auto;
+  }
+  @media screen and (min-width: $tablet-large) {
+    padding: {
+      right: 48px;
+      left: 48px;
+    }
+  }
+  // @media screen and (min-width: $screen-small) {
+  //   padding: {
+  //     right: 64px;
+  //     left: 64px;
+  //   }
+  // }
+}
