@@ -20,8 +20,9 @@
 .search_slider-text {
 	width: 100%;
 	// padding-bottom: 24px;
-	font-size: 12px;
-	font-weight: 400;
+	font-size: 16px;
+	font-weight: 300;
+	// letter-spacing: 1px;
 	text-transform: uppercase;
 }
 
@@ -43,7 +44,7 @@
 .search_price-from {
 	width: 160px;
 	height: 160px;
-	padding-top: 58px;
+	padding-top: 60px;
 	margin: 14px auto;
 	font-size: 24px;
 	font-weight: 700;
@@ -56,7 +57,7 @@
 .search_price-to {
 	width: 160px;
 	height: 160px;
-	padding-top: 58px;
+	padding-top: 60px;
 	margin: 14px auto;
 	font-size: 24px;
 	font-weight: 700;
@@ -67,14 +68,33 @@
 }
 
 .search_btn {
+	display: inline-block;
 	padding: 24px 48px;
-	font-size: 12px;
-	font-weight: 700;
+	font-size: 13px;
+	font-weight: 400;
 	color: #fff;
-	letter-spacing: 2px;
+	letter-spacing: 1px;
 	border: 0;
 	border-radius: 2px;
 	text-transform: uppercase;
+	background-color: $color-second--light;
+	outline: none;
+	&:hover {
+		background-color: $color-second;
+	}
+}
+
+.clear_btn {
+	display: inline-block;
+	padding: 24px 48px;
+	font-size: 13px;
+	font-weight: 400;
+	color: #fff;
+	letter-spacing: 1px;
+	border: 0;
+	border-radius: 2px;
+	text-transform: uppercase;
+	text-decoration: none;
 	background-color: $color-main--light;
 	outline: none;
 	&:hover {
@@ -83,6 +103,7 @@
 }
 
 .search_submit {
+	margin-top: 48px;
 	margin-bottom: 48px;
 	text-align: center;
 }
@@ -109,7 +130,7 @@
 	}
 	@media screen and (min-width: $screen-small) {
 		&.active {
-			margin-top: -4px;
+			margin-top: 0;
 			margin-bottom: 0;
 		}
 	}

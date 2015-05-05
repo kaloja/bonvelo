@@ -67,3 +67,10 @@ img {
   //   }
   // }
 }
+
+
+@mixin vertical-align--50 {
+  position: relative;
+  top: 50%;
+  @include vendor(transform, translateY(-50%));
+}

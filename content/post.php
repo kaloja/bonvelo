@@ -11,7 +11,7 @@
         <div class="post_file--preview"></div>
 
         <textarea class="post_title" name="post_title" placeholder="Skriv din rubrik här..." rows="1" cols="0" autofocus></textarea>
-        <textarea class="post_text" name="post_text" placeholder="Skriv en kort beskrivning om cykeln här..." rows="1" cols="0"></textarea>
+        <textarea class="post_text" name="post_text" placeholder="Skriv en kort beskrivning om cykeln..." rows="1" cols="0"></textarea>
 
       </div>
     </div>
@@ -190,13 +190,19 @@
             <?php endforeach ?>
           </ul>
 
-         <ul class="post_list ui-list">
-          <li class="post_item">
+          <!-- <ul class="post_list ui-list">
+            <li class="post_item">
+              <button name="submit" class="post_submit" title="Publicera annons">Publicera</button>
+              <input type="hidden" name="action" value="Post"/>
+              <input type="hidden" name="post_type" value="Annons"/>
+            </li>
+          </ul> -->
+
+          <div class="post_submit--wrap">
             <button name="submit" class="post_submit" title="Publicera annons">Publicera</button>
             <input type="hidden" name="action" value="Post"/>
             <input type="hidden" name="post_type" value="Annons"/>
-          </li>
-         </ul>
+          </div>
 
         <?php endif; ?>
         

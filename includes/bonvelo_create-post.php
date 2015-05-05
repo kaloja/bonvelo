@@ -60,30 +60,13 @@ class Create_Post {
 	// private $type;
 
 	function save() {
-
+		
 		if (isset($_POST['submit']) && !empty($_POST['action'])) {
 
-			// # Checks the input fields
-			// if (!is_user_logged_in()) {
-			// 	if (isset($_POST['post_fname'])) {
-			// 		$this->fname = $_POST['post_fname'];
-			// 	}
-
-			// 	if (isset($_POST['post_lname'])) {
-			// 		$this->lname = $_POST['post_lname'];
-			// 	}
-
-			// 	if (isset($_POST['post_email'])) {
-			// 		$this->email = $_POST['post_email'];
-			// 	}
-			// }
-
-			// else {
-				$current_user = wp_get_current_user();
-				$this->fname = $current_user->first_name;
-				$this->lname = $current_user->last_name;
-				$this->email = $current_user->user_email;
-			// }
+			$current_user = wp_get_current_user();
+			$this->fname = $current_user->first_name;
+			$this->lname = $current_user->last_name;
+			$this->email = $current_user->user_email;
 
 			if (isset($_POST['post_phone'])) {
 				$this->phone = $_POST['post_phone'];
@@ -126,12 +109,10 @@ class Create_Post {
 			}
 
 			if (isset($_POST['post_year'])) {
-				// $this->year = $_POST['post_year'];
 				$this->year = preg_replace('/\s+/', '', $_POST['post_year']);
 			}
 
 			if (isset($_POST['post_sales-price'])) {
-				// $this->sales_price = $_POST['post_sales-price'];
 				$this->sales_price = preg_replace('/\s+/', '', $_POST['post_sales-price']);
 			}
 
@@ -350,113 +331,122 @@ class Create_Post {
 				wp_set_object_terms($pid, $term_size, 'size');
 
 				# Insert first name
-				update_field('fname', esc_attr($this->fname), $pid);
+				add_post_meta($pid, 'fname', esc_attr($this->fname));
 
 				# Insert last name
-				update_field('lname', esc_attr($this->lname), $pid);
+				add_post_meta($pid, 'lname', esc_attr($this->lname));
 
 				# Insert email
-				update_field('email', esc_attr($this->email), $pid);
+				add_post_meta($pid, 'email', esc_attr($this->email));
 
 				# Insert phone
-				update_field('phone', esc_attr($this->phone), $pid);
+				add_post_meta($pid, 'phone', esc_attr($this->phone));
 
 				# Insert gear group
-				update_field('gear-group', esc_attr($this->gear_group), $pid);
+				add_post_meta($pid, 'gear-group', esc_attr($this->gear_group));
 
 				# Insert wheels
-				update_field('wheels', esc_attr($this->wheels), $pid);
+				add_post_meta($pid, 'wheels', esc_attr($this->wheels));
 
 				# Insert sales price
-				update_field('sales-price', esc_attr($this->sales_price), $pid);
+				add_post_meta($pid, 'sales-price', esc_attr($this->sales_price));
 
 				# Insert image
-				update_field('feature-image', $attach_id, $pid);
+				add_post_meta($pid, 'feature-image', $attach_id);
 
 				# Insert model year
-				update_field('year', esc_attr($this->year), $pid);
+				add_post_meta($pid, 'year', esc_attr($this->year));
 
 				# Insert front gear
-				update_field('front-gear', esc_attr($this->front_gear), $pid);
+				add_post_meta($pid, 'front-gear', esc_attr($this->front_gear));
 
 				# Insert rear gear
-				update_field('rear-gear', esc_attr($this->rear_gear), $pid);
+				add_post_meta($pid, 'rear-gear', esc_attr($this->rear_gear));
 
 				# Insert gear shifters
-				update_field('gear-shifters', esc_attr($this->gear_shifters), $pid);
+				add_post_meta($pid, 'gear-shifters', esc_attr($this->gear_shifters));
 
 				# Insert rims
-				update_field('rims', esc_attr($this->rims), $pid);
+				add_post_meta($pid, 'rims', esc_attr($this->rims), $pid);
 
 				# Insert front hub
-				update_field('front-hub', esc_attr($this->front_hub), $pid);
+				add_post_meta($pid, 'front-hub', esc_attr($this->front_hub));
 
 				# Insert rear hub
-				update_field('rear-hub', esc_attr($this->rear_hub), $pid);
+				add_post_meta($pid, 'rear-hub', esc_attr($this->rear_hub));
 
 				# Insert spokes
-				update_field('spokes', esc_attr($this->spokes), $pid);
+				add_post_meta($pid, 'spokes', esc_attr($this->spokes));
 
 				# Insert tires
-				update_field('tires', esc_attr($this->tires), $pid);
+				add_post_meta($pid, 'tires', esc_attr($this->tires));
 
 				# Insert brake levers
-				update_field('break-levers', esc_attr($this->break_levers), $pid);
+				add_post_meta($pid, 'break-levers', esc_attr($this->break_levers));
 
 				# Insert front brake
-				update_field('front-break', esc_attr($this->front_break), $pid);
+				add_post_meta($pid, 'front-break', esc_attr($this->front_break));
 
 				# Insert rear brake
-				update_field('rear-break', esc_attr($this->rear_break), $pid);
+				add_post_meta($pid, 'rear-break', esc_attr($this->rear_break));
 
 				# Insert front disc
-				update_field('front-disc', esc_attr($this->front_disc), $pid);
+				add_post_meta($pid, 'front-disc', esc_attr($this->front_disc));
 
 				# Insert rear disc
-				update_field('rear-disc', esc_attr($this->rear_disc), $pid);
+				add_post_meta($pid, 'rear-disc', esc_attr($this->rear_disc));
 
 				# Insert crankset
-				update_field('crankset', esc_attr($this->crankset), $pid);
+				add_post_meta($pid, 'crankset', esc_attr($this->crankset));
 
 				# Insert bottom bracket
-				update_field('bottom-bracket', esc_attr($this->bottom_bracket), $pid);
+				add_post_meta($pid, 'bottom-bracket', esc_attr($this->bottom_bracket));
 
 				# Insert cassette
-				update_field('cassette', esc_attr($this->cassette), $pid);
+				add_post_meta($pid, 'cassette', esc_attr($this->cassette));
 
 				# Insert chain
-				update_field('chain', esc_attr($this->chain), $pid);
+				add_post_meta($pid, 'chain', esc_attr($this->chain));
 
 				# Insert fork
-				update_field('fork', esc_attr($this->fork), $pid);
+				add_post_meta($pid, 'fork', esc_attr($this->fork));
 
 				# Insert rear shock
-				update_field('rear-shock', esc_attr($this->rear_shock), $pid);
+				add_post_meta($pid, 'rear-shock', esc_attr($this->rear_shock));
 
 				# Insert remote system
-				update_field('remote-system', esc_attr($this->remote_system), $pid);
+				add_post_meta($pid, 'remote-system', esc_attr($this->remote_system));
 
 				# Insert handlebar
-				update_field('handlebar', esc_attr($this->handlebar), $pid);
+				add_post_meta($pid, 'handlebar', esc_attr($this->handlebar));
 
 				# Insert stem
-				update_field('stem', esc_attr($this->stem), $pid);
+				add_post_meta($pid, 'stem', esc_attr($this->stem));
 
 				# Insert headset
-				update_field('headset', esc_attr($this->headset), $pid);
+				add_post_meta($pid, 'headset', esc_attr($this->headset));
 
 				# Insert seatpost
-				update_field('seatpost', esc_attr($this->seatpost), $pid);
+				add_post_meta($pid, 'seatpost', esc_attr($this->seatpost));
 
 				# Insert saddle
-				update_field('saddle', esc_attr($this->saddle), $pid);
+				add_post_meta($pid, 'saddle', esc_attr($this->saddle));
 
 				# Insert weight
-				update_field('weight', esc_attr($this->weight), $pid);
+				add_post_meta($pid, 'weight', esc_attr($this->weight));
 
-				$link = get_permalink( $pid );
-				wp_redirect($link);
-				echo 'Din annons är nu publicerad';
+
+
+				// $link = get_permalink( $pid );
+				// wp_redirect($link);
+				// echo 'Din annons är nu publicerad';
+
+				$current_user = wp_get_current_user();
+		        $user_url = $current_user->user_login;
+		        $url = home_url('/'.$user_url);
+		        wp_redirect($url);
+
+		        exit();
 
 			}
 

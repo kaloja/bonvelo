@@ -1,18 +1,53 @@
+/* Ajax
+============================================================================ */
+
+function ajax(url, callback, message) {
+    var XHR = null;
+
+    if (XMLHttpRequest) {
+        XHR = new XMLHttpRequest();
+    } 
+
+    else {
+        XHR = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+
+    XHR.onreadystatechange = function() {
+        if (XHR.readyState === 4 || XHR.readyState === 'complete') {
+
+            if (XHR.status === 200) {
+                callback(XHR);
+            } 
+
+            else {
+                console.log('Fel på servern');
+            }
+
+        }
+    };
+
+    XHR.open('POST', url, true);
+    XHR.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+    XHR.send(message);
+}
+
+
+
 /* Polyfill for event handlers (Vanilla)
 ============================================================================ */
 
 function addEvent(event, elem, func) {
-  if (elem.addEventListener) { // W3C DOM
-    elem.addEventListener(event, func, false);
-  }
+    if (elem.addEventListener) { // W3C DOM
+        elem.addEventListener(event, func, false);
+    }
 
-  else if (elem.attachEvent) { // IE DOM
-    elem.attachEvent('on'+event, func);
-  }
+    else if (elem.attachEvent) { // IE DOM
+        elem.attachEvent('on'+event, func);
+    }
 
-  else { // Not much to do
-    elem[event] = func;
-  }
+    else { // Not much to do
+        elem[event] = func;
+    }
 }
 
 
@@ -21,44 +56,64 @@ function addEvent(event, elem, func) {
 ============================================================================ */
 
 function toggle(obj) {
-  var elem = document.querySelector(obj);
-  elem.classList.toggle('active');
+    var elem = document.querySelector(obj);
+    elem.classList.toggle('active');
 }
 
 (function() {
-  var moreSpec = document.querySelector('.js-spec');
+    var moreSpec = document.querySelector('.js-spec');
 
-  if (moreSpec) {
-    addEvent('click', moreSpec, function() {
-      toggle('.js-spec');
-      toggle('.post_spec');
-    })
-  }
+    if (moreSpec) {
+        addEvent('click', moreSpec, function() {
+            toggle('.js-spec');
+            toggle('.post_spec');
+        })
+    }
 })();
 
+function EditStatus(name) {
+    this.postStartStatus = document.querySelector('.post_start--'+name);
+
+    if (this.postStartStatus != null) {
+        this.postStatus = document.querySelector('.post_'+name);
+        this.postCancelStatus = document.querySelector('.post_cancel--'+name);
+
+        if (this.postStartStatus) {
+            addEvent('click', this.postStartStatus, function(e) {
+                e.preventDefault();
+                toggle('.post_'+name+'-bg');
+            });
+        }
+
+        if (this.postCancelStatus) {
+            addEvent('click', this.postCancelStatus, function(e) {
+                e.preventDefault();
+                toggle('.post_'+name+'-bg');
+            });
+        }
+
+        if (this.postStatus) {
+            addEvent('submit', this.postStatus, function(e) {
+                e.preventDefault();
+                // Submit the form
+            });
+        }
+    }
+}
+
+/* Set status to draft  */
 (function() {
-  var postStartDelete = document.querySelector('.post_start-delete');
-  var postDelete = document.querySelector('.post_delete');
-  var postCancel = document.querySelector('.post_cancel');
+    var status = new EditStatus('draft');
+})();
 
-  if (postStartDelete) {
-    addEvent('click', postStartDelete, function() {
-      toggle('.post_delete-bg');
-    })
-  }
+/* Set status to delete  */
+(function() {
+    var status = new EditStatus('delete');
+})();
 
-  if (postCancel) {
-    addEvent('click', postCancel, function(e) {
-      e.preventDefault();
-      toggle('.post_delete-bg');
-    })
-  }
-
-  if (postDelete) {
-    addEvent('submit', postDelete, function() {
-      // Submit the form
-    })
-  }
+/* Set status to publish  */
+(function() {
+    var status = new EditStatus('publish');
 })();
 
 
@@ -67,86 +122,92 @@ function toggle(obj) {
 ============================================================================ */
 
 function Dropdown(name) {
-  this.btn = document.querySelector('.js-'+name+'-btn');
-  if (this.btn != null) {
-    this.list = document.querySelector('.js-'+name+'-list');
-    this.items = document.querySelectorAll('.js-'+name+'-item');
-    this.data = 'data-'+name;
-    this.placeholder = this.btn.children[0];
-    this.inputData = this.btn.children[1];
+    this.btn = document.querySelector('.js-'+name+'-btn');
 
-    addEvent('click', this.list, (function(obj) {
-      return function() {
-        if (obj.btn.classList.contains('active')) {
-          obj.btn.classList.remove('active');
+    if (this.btn != null) {
+        this.list = document.querySelector('.js-'+name+'-list');
+        this.items = document.querySelectorAll('.js-'+name+'-item');
+        this.data = 'data-'+name;
+        this.placeholder = this.btn.children[1];
+        this.inputData = this.btn.children[2];
+
+        addEvent('click', this.list, (function(obj) {
+            return function() {
+                //if (obj.btn.classList.contains('active')) {
+                    obj.btn.classList.toggle('active');
+                //}
+
+                //if (obj.list.classList.contains('active')) {
+                    obj.list.classList.toggle('active');
+                //}
+            }
+        })(this));
+
+        addEvent('click', this.btn, (function(obj) {
+            return function() {
+                // obj.remove('.js-category-btn');
+                // obj.remove('.js-category-list');
+                // obj.remove('.js-brand-btn');
+                // obj.remove('.js-brand-list');
+                // obj.remove('.js-size-btn');
+                // obj.remove('.js-size-list');
+                // obj.remove('.js-region-btn');
+                // obj.remove('.js-region-list');
+            
+                obj.toggle('.js-'+name+'-btn');
+                obj.toggle('.js-'+name+'-list');
+            }
+        })(this));
+
+        for (var i = 0; i < this.items.length; i++) {
+            var item = this.items[i];
+
+            addEvent('click', item, (function(obj) {
+                return function() {
+                    var itemText = this.innerText;
+                    var itemData = this.getAttribute(obj.data); // For vanilla JavaScript: this.getAttribute('data-brand') or this.dataset.brand. Mark Otto recommends jQuery as it works in all browsers - even legacy.
+                    obj.placeholder.innerText = itemText;
+                    obj.inputData.value = itemData;
+                }
+            })(this));
+
         }
-
-        if (obj.list.classList.contains('active')) {
-          obj.list.classList.remove('active');
-        }
-      }
-    })(this));
-
-    addEvent('click', this.btn, (function(obj) {
-      return function() {
-        obj.remove('.js-category-btn');
-        obj.remove('.js-category-list');
-        obj.remove('.js-brand-btn');
-        obj.remove('.js-brand-list');
-        obj.remove('.js-size-btn');
-        obj.remove('.js-size-list');
-        obj.remove('.js-region-btn');
-        obj.remove('.js-region-list');
-
-        obj.toggle('.js-'+name+'-btn');
-        obj.toggle('.js-'+name+'-list');
-      }
-    })(this));
-
-    for (var i = 0; i < this.items.length; i++) {
-      var item = this.items[i];
-
-      addEvent('click', item, (function(obj) {
-        return function() {
-          var itemText = this.innerText;
-          var itemData = this.getAttribute(obj.data); // For vanilla JavaScript: this.getAttribute('data-brand') or this.dataset.brand. Mark Otto recommends jQuery as it works in all browsers - even legacy.
-          obj.placeholder.innerText = itemText;
-          obj.inputData.value = itemData;
-        }
-      })(this));
-
     }
-  }
 
-  Dropdown.prototype.toggle = function(obj) {
-    var elem = document.querySelector(obj);
-    elem.classList.toggle('active');
-  }
+    Dropdown.prototype.toggle = function(obj) {
+        var elem = document.querySelector(obj);
+        elem.classList.toggle('active');
+    }
 
-  Dropdown.prototype.remove = function(obj) {
-    var elem = document.querySelector(obj);
-    elem.classList.remove('active');
-  }
+    Dropdown.prototype.remove = function(obj) {
+        var elem = document.querySelector(obj);
+        elem.classList.remove('active');
+    }
+
+    Dropdown.prototype.add = function(obj) {
+        var elem = document.querySelector(obj);
+        elem.classList.add('active');
+    }
 }
 
 /* Dropdown category */
 (function() {
-  var category_list = new Dropdown('category');
+    var categoryList = new Dropdown('category');
 })();
 
 /* Dropdown brand */
 (function() {
-  var category_list = new Dropdown('brand');
+    var categoryList = new Dropdown('brand');
 })();
 
 /* Dropdown size */
 (function() {
-  var category_list = new Dropdown('size');
+    var categoryList = new Dropdown('size');
 })();
 
 /* Dropdown region */
 (function() {
-  var category_list = new Dropdown('region');
+    var categoryList = new Dropdown('region');
 })();
 
 
@@ -155,47 +216,51 @@ function Dropdown(name) {
 ============================================================================ */
 
 (function() {
-  var postTitle = document.querySelector('.post_title');
+    var postTitle = document.querySelector('.post_title');
 
-  if (postTitle) {
-    function resizePostTitle() {
-      postTitle.style.height = 'auto';
-      postTitle.style.height = postTitle.scrollHeight+'px';
+    if (postTitle) {
+        function resizePostTitle() {
+            postTitle.style.height = 'auto';
+            postTitle.style.height = postTitle.scrollHeight+'px';
+        }
+
+        addEvent('change', postTitle, resizePostTitle);
+        addEvent('cut', postTitle, delayedResize);
+        addEvent('paste', postTitle, delayedResize);
+        addEvent('drop', postTitle, delayedResize);
+        addEvent('keydown', postTitle, delayedResize);
+
+        postTitle.focus();
+        postTitle.select();
     }
 
-    addEvent('change', postTitle, resizePostTitle);
-    addEvent('cut', postTitle, delayedResize);
-    addEvent('paste', postTitle, delayedResize);
-    addEvent('drop', postTitle, delayedResize);
-    addEvent('keydown', postTitle, delayedResize);
+    resizePostTitle();
 
-    postTitle.focus();
-    postTitle.select();
-  }
+    var postText = document.querySelector('.post_text');
 
-  var postText = document.querySelector('.post_text');
+    if (postText) {
+        function resizePostText() {
+            postText.style.height = 'auto';
+            postText.style.height = postText.scrollHeight+'px';
+        }
 
-  if (postText) {
-    function resizePostText() {
-      postText.style.height = 'auto';
-      postText.style.height = postText.scrollHeight+'px';
+        addEvent('change', postText, resizePostText);
+        addEvent('cut', postText, delayedResize);
+        addEvent('paste', postText, delayedResize);
+        addEvent('drop', postText, delayedResize);
+        addEvent('keydown', postText, delayedResize);
+
+        postText.focus();
+        postText.select();
     }
 
-    addEvent('change', postText, resizePostText);
-    addEvent('cut', postText, delayedResize);
-    addEvent('paste', postText, delayedResize);
-    addEvent('drop', postText, delayedResize);
-    addEvent('keydown', postText, delayedResize);
+    resizePostText();
 
-    postText.focus();
-    postText.select();
-  }
-
-  /* 0-timeout to get the already changed text */
-  function delayedResize () {
-    window.setTimeout(resizePostTitle, 0);
-    window.setTimeout(resizePostText, 0);
-  }
+    /* 0-timeout to get the already changed text */
+    function delayedResize () {
+        window.setTimeout(resizePostTitle, 0);
+        window.setTimeout(resizePostText, 0);
+    }
 })();
 
 
@@ -204,26 +269,52 @@ function Dropdown(name) {
 ============================================================================ */
 
 $(function() {
-  $(".post_file--upload").on("change", function() {
-    var files = !!this.files ? this.files : [];
-    if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+    $(".post_file--upload").on("change", function() {
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
 
-    if (/^image/.test( files[0].type)) { // only image file
-      var reader = new FileReader(); // instance of the FileReader
-      reader.readAsDataURL(files[0]); // read the local file
+        if (/^image/.test( files[0].type)) { // only image file
+            var reader = new FileReader(); // instance of the FileReader
+            reader.readAsDataURL(files[0]); // read the local file
 
-      reader.onloadend = function() { // set image data as background of div
-        $(".post_file--preview").css("background-image", "url("+this.result+")");
-        $(".post_file--preview").css("height", "600px");
-        $(".post_file--preview").css("box-shadow", "0 1px 2px 0 rgba(0,0,0,.05)");
-        $(function() {
-            $('.item').matchHeight();
-        });
-      }
-    }
-  });
+            reader.onloadend = function() { // set image data as background of div
+                $(".post_file--preview").css("background-image", "url("+this.result+")");
+                $(".post_file--preview").css("height", "600px");
+                $(".post_file--preview").css("box-shadow", "0 1px 2px 0 rgba(0,0,0,.05)");
+                $(function() {
+                    $('.item').matchHeight();
+                });
+            }
+        }
+    });
 });
 
+
+
+/* Submit search with Ajax (Vanilla)
+============================================================================ */
+
+// var searchBtn = document.querySelector('.js-search-form');
+
+// if (searchBtn) {
+//     addEvent('click', searchBtn, function(e) {
+//         e.preventDefault();
+//         console.log('hej');
+//         var searchCategory = document.getElementById('category').value;
+//         var searchBrand = document.getElementById('brand').value;
+//         var searchSize = document.getElementById('size').value;
+//         var searchRegion = document.getElementById('region').value;
+//         var searchPriceMin = document.getElementById('price-min').value;
+//         var searchPriceMax = document.getElementById('price-max').value;
+//         console.log(searchCategory);
+//         ajax("http://bonvelo.loc/wp-content/themes/bonvelo/template-search.php", cbSearch, "category="+searchCategory);
+//         // "category="+searchCategory+"&brand="+searchBrand+"&size="+searchSize+"&region"+searchRegion+"&price-min="+searchPriceMin+"&price-max="+searchPriceMax
+//     });
+// }  
+
+// function cbSearch(data) {
+//     console.log(data.responseText);
+// }
 
 
 /* Validate publish form (Vanilla)

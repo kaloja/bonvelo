@@ -8,7 +8,7 @@
 	  
 
 	  <div class="signup_help">
-	  	<p class="signup_copy">Har du inget konto?</p>
+	  	<p class="signup_copy">Har du ett konto?</p>
 
 	    <form method="post" class="signup_login--form" action="<?php echo home_url('/logga-in') ?>">
 	      <button class="signup_login--btn" title="Logga in">Logga in</button>

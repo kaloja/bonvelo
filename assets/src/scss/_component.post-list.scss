@@ -23,7 +23,7 @@
   @media screen and (min-width: $tablet-small) {
     width: 50%;
   }
-  @media screen and (min-width: $screen-small) {
+  @media screen and (min-width: $screen-large) {
     width: 33.333333%;
   }
 }
@@ -67,7 +67,7 @@
 	font-size: 16px;
 	font-weight: 600;
 	color: #fff;
-	background-color: $color-second;
+	background-color: $color-main--light;
 	border-radius: 110px;
 	border: 6px solid #eee;
 }
@@ -100,7 +100,7 @@
 	font-size: 16px;
 	font-weight: 600;
 	color: #fff;
-	background-color: $color-main--light;
+	background-color: $color-second;
 	border-radius: 64px;
 	border: 6px solid #eee;
 }

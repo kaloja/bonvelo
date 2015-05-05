@@ -93,7 +93,7 @@ class Signup {
 			'post_status' => 'publish',
 			'post_author' => 1,
 			'post_type' => 'page',
-			//'page_template' => 'dashboard.php'
+			'page_template' => 'template-dashboard.php'
 		);
 
 		if (is_wp_error($this->bv_validation())) {
