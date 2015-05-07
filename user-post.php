@@ -10,7 +10,7 @@
 
   <div class="wrapper">
     <div class="login">
-      <h2 class="login_title">För att kunna skapa en annons på Bonvelo måste du vara inloggad</h2>
+      <h2 class="login_title">Logga in för att skapa en annons</h2>
       <?php echo do_shortcode('[bv_login_form]'); ?>
     </div>
       

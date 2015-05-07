@@ -15,13 +15,13 @@
 						<div class="search_price-from">100 <span class="currancy-size">kr</span></div>
 					</div>
 
+					<div class="search_price-wrap search_price-wrap--right">
+						<div class="search_price-to">180000 <span class="currancy-size">kr</span></div>
+					</div>
+					
 					<div class="search_slider">
 						<div class="search_slider-text">Sök med prisintervall</div>
 						<input type="text" id="range" name="" value="">
-					</div>
-
-					<div class="search_price-wrap search_price-wrap--right">
-						<div class="search_price-to">180000 <span class="currancy-size">kr</span></div>
 					</div>
 				</div>
 				
