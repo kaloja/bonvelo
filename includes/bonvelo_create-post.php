@@ -12,6 +12,7 @@ class Create_Post {
 	private $category;
 	private $brand;
 	private $title;
+	private $frame;
 	private $size;
 	private $gear_group;
 	private $wheels;
@@ -61,7 +62,7 @@ class Create_Post {
 
 	function save() {
 		
-		if (isset($_POST['submit']) && !empty($_POST['action'])) {
+		if (isset($_POST['post_submit'])) {
 
 			$current_user = wp_get_current_user();
 			$this->fname = $current_user->first_name;
@@ -76,24 +77,28 @@ class Create_Post {
 				$this->post_type = $_POST['post_type'];
 			}
 
-			if (isset($_POST['post_region'])) {
-				$this->region = $_POST['post_region'];
+			if (isset($_POST['region'])) {
+				$this->region = $_POST['region'];
 			}
 
-			if (isset($_POST['post_category'])) {
-				$this->category = $_POST['post_category'];
+			if (isset($_POST['category'])) {
+				$this->category = $_POST['category'];
 			}
 
-			if (isset($_POST['post_brand'])) {
-				$this->brand = $_POST['post_brand'];
+			if (isset($_POST['brand'])) {
+				$this->brand = $_POST['brand'];
 			}
 
 			if (isset($_POST['post_title'])) {
 				$this->title = $_POST['post_title'];
 			}
 
-			if (isset($_POST['post_size'])) {
-				$this->size = $_POST['post_size'];
+			if (isset($_POST['post_frame'])) {
+				$this->frame = $_POST['post_frame'];
+			}
+
+			if (isset($_POST['size'])) {
+				$this->size = $_POST['size'];
 			}
 
 			if (isset($_POST['post_gear-group'])) {
@@ -250,19 +255,19 @@ class Create_Post {
 			// 	echo 'Telefonnummer saknas.';
 			// }
 
-			if (empty($_POST['post_category'])) {
+			if (empty($_POST['category'])) {
 				echo 'Välj en kategori för annonsen.';
 			}
 			
-			elseif (empty($_POST['post_brand'])) {
+			elseif (empty($_POST['brand'])) {
 				echo 'Lägg till varumärket på cykeln.';
 			}
 			
-			elseif (empty($_POST['post_size'])) {
+			elseif (empty($_POST['size'])) {
 				echo 'Storlek saknas.';
 			}
 			
-			elseif (empty($_POST['post_region'])) {
+			elseif (empty($_POST['region'])) {
 				echo 'Välj ett område.';
 			}
 			
@@ -299,7 +304,7 @@ class Create_Post {
 				# Insert $post to database
 				$pid = wp_insert_post($post);
 
-				if (isset($_POST['submit']) && !empty($_FILES)) {
+				if (isset($_POST['post_submit']) && !empty($_FILES)) {
 
 					if (!function_exists('wp_generate_attachment_metadata')) {
 						require_once(ABSPATH . "wp-admin" . '/includes/image.php');
@@ -341,6 +346,9 @@ class Create_Post {
 
 				# Insert phone
 				add_post_meta($pid, 'phone', esc_attr($this->phone));
+
+				# Insert frame
+				add_post_meta($pid, 'frame', esc_attr($this->frame));
 
 				# Insert gear group
 				add_post_meta($pid, 'gear-group', esc_attr($this->gear_group));

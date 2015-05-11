@@ -31,4 +31,37 @@ function custom_post_annons() {
 }
 add_action('init', 'custom_post_annons');
 
+
+
+/* Custom post type - User
+============================================================================ */
+
+function custom_post_konto() {
+  $labels = array(
+    'name'                => ('Konto'),
+    'singular_name'       => ('Konto'),
+    'add_new'             => ('Skapa nytt konto'),
+    'add_new_item'        => ('Skapa nytt konto'),
+    'edit_item'           => ('Redigera konto'),
+    'new_item'            => ('Nytt konto'),
+    'all_items'           => ('Alla konton'),
+    'view_item'           => ('Visa konto'),
+    'search_items'        => ('Sök konto'),
+    'not_found'           => ('Inget konto hittades'),
+    'not_found_in_trash'  => ('Inget konto hittades i papperskorgen'),
+    'parent_item_colon'   => '',
+    'menu_name'           => 'Konto'
+  );
+  $args = array(
+    'labels'              => $labels,
+    'description'         => 'Konto',
+    'public'              => true,
+    'menu_position'       => 6,
+    'supports'            => array( 'title' ),
+    'has_archive'         => true,
+  );
+  register_post_type('konto', $args);
+}
+add_action('init', 'custom_post_konto');
+
 ?>

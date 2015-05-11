@@ -13,6 +13,7 @@ class Update_Post {
     private $category;
     private $brand;
     private $title;
+    private $frame;
     private $size;
     private $gear_group;
     private $wheels;
@@ -77,24 +78,28 @@ class Update_Post {
                 $this->id = $_POST['pid'];
             }
 
-            if (isset($_POST['post_region'])) {
-                $this->region = $_POST['post_region'];
+            if (isset($_POST['region'])) {
+                $this->region = $_POST['region'];
             }
 
-            if (isset($_POST['post_category'])) {
-                $this->category = $_POST['post_category'];
+            if (isset($_POST['category'])) {
+                $this->category = $_POST['category'];
             }
 
-            if (isset($_POST['post_brand'])) {
-                $this->brand = $_POST['post_brand'];
+            if (isset($_POST['brand'])) {
+                $this->brand = $_POST['brand'];
             }
 
             if (isset($_POST['post_title'])) {
                 $this->title = $_POST['post_title'];
             }
 
-            if (isset($_POST['post_size'])) {
-                $this->size = $_POST['post_size'];
+            if (isset($_POST['post_frame'])) {
+                $this->frame = $_POST['post_frame'];
+            }
+
+            if (isset($_POST['size'])) {
+                $this->size = $_POST['size'];
             }
 
             if (isset($_POST['post_gear-group'])) {
@@ -297,6 +302,9 @@ class Update_Post {
 
                 # Insert phone
                 update_post_meta($pid, 'phone', esc_attr($this->phone));
+
+                # Insert frame
+                add_post_meta($pid, 'frame', esc_attr($this->frame));
 
                 # Insert gear group
                 update_post_meta($pid, 'gear-group', esc_attr($this->gear_group));

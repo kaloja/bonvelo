@@ -17,9 +17,7 @@ class Draft_Post {
     }
 
     function __construct() {
-
         add_action('init', array($this, 'post_draft'), 11);
-
     }
 
 }

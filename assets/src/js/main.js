@@ -116,6 +116,11 @@ function EditStatus(name) {
     var status = new EditStatus('publish');
 })();
 
+/* Update user email  */
+(function() {
+    var status = new EditStatus('email');
+})();
+
 
 
 /* Custom dropdown list - inspired by Codrops (Vanilla)
@@ -278,9 +283,11 @@ $(function() {
             reader.readAsDataURL(files[0]); // read the local file
 
             reader.onloadend = function() { // set image data as background of div
-                $(".post_file--preview").css("background-image", "url("+this.result+")");
-                $(".post_file--preview").css("height", "600px");
-                $(".post_file--preview").css("box-shadow", "0 1px 2px 0 rgba(0,0,0,.05)");
+                $(".post_file--preview").attr("src", this.result);
+
+                // .css("background-image", "url("+this.result+")");
+                // $(".post_file--preview").css("height", "600px");
+                // $(".post_file--preview").css("box-shadow", "0 1px 2px 0 rgba(0,0,0,.05)");
                 $(function() {
                     $('.item').matchHeight();
                 });
@@ -288,6 +295,7 @@ $(function() {
         }
     });
 });
+
 
 
 

@@ -303,9 +303,13 @@
 
 				            <?php $size = wp_get_object_terms($pid, 'size'); ?>
 
-				            <div class="post-card_size">
-				                <p class="size-wrap"><?php echo $size[0]->name; ?></p>
-				            </div>
+				            <?php if (!empty($size)): ?>
+
+					            <div class="post-card_size">
+					                <p class="size-wrap"><?php echo $size[0]->name; ?></p>
+				            	</div>
+
+				            <?php endif; ?>
 
 				            <div class="post-card_body">
 				                <h2 class="post-card_title">

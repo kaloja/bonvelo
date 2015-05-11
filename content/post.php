@@ -6,9 +6,9 @@
         <div class="post_file">
           <span>Lägg till annonsbild</span>
           <input type="file" class="post_file--upload" name="post_file--upload">
-        </div>
+        </div>    
 
-        <div class="post_file--preview"></div>
+        <img class="post_file--preview">
 
         <textarea class="post_title" name="post_title" placeholder="Skriv din rubrik här..." rows="1" cols="0" autofocus></textarea>
         <textarea class="post_text" name="post_text" placeholder="Skriv en kort beskrivning om cykeln..." rows="1" cols="0"></textarea>
@@ -20,6 +20,10 @@
       <div class="post_details">
 
         <ul class="post_list ui-list">
+          <li class="post_item">
+            <input type="text" class="post_frame post_input" name="post_frame" value="" placeholder="Ram" />
+          </li>
+
           <li class="post_item">
             <input type="text" class="post_gear-group post_input" name="post_gear-group" value="" placeholder="Växelgrupp" />
           </li>
@@ -37,12 +41,8 @@
           </li>
 
           <li class="post_item">
-            <input type="text" class="post_phone post_input" name="post_phone" value="" placeholder="Telefon (valfri)"/>
-          </li>
-
-          <li class="post_item">
             <div class="post_spec--btn js-spec">
-              <span>Lägg till specifikation</span>
+              <span>Lägg till detaljerad specifikation</span>
             </div>
           </li>
         </ul>
@@ -107,105 +107,102 @@
         <?php $regions = get_terms('region', $tax_args); ?>
 
         <ul class="post_list ui-list">
+              
           <li class="post_item">
-            <div class="dropdown js-category-btn">
-              <span>Välj kategori</span>
-              <input type="hidden" name="post_category" value="">
-            </div>
+              <div class="dropdown js-category-btn">
+                <label class="dropdown_label">Kategori</label>
+                <span>Välj kategori</span>
+                <input type="hidden" name="category" id="category" value="">
+              </div>
           </li>
+
+          <?php if (!empty($categories) && !is_wp_error($categories)): ?>
+            <ul class="dropdown_list ui-list js-category-list">
+              <?php foreach ($categories as $category): ?>
+                <li class="dropdown_item js-category-item" data-category="<?php echo $category->slug ?>">
+                  <span class="dropdown_link">
+                    <?php echo $category->name ?>
+                  </span>
+                </li>
+              <?php endforeach ?>
+            </ul>
+          <?php endif; ?>
 
           <li class="post_item">
             <div class="dropdown js-brand-btn">
-              <span>Välj märke</span>
-              <input type="hidden" name="post_brand" value="">
+              <label class="dropdown_label">Märke</label>
+                <span>Välj märke</span>
+                <input type="hidden" name="brand" id="brand" value="">
             </div>
           </li>
+
+          <?php if (!empty($brands) && !is_wp_error($brands)): ?>
+            <ul class="dropdown_list ui-list js-brand-list">
+              <?php foreach ($brands as $brand): ?>
+                <li class="dropdown_item js-brand-item" data-brand="<?php echo $brand->slug ?>">
+                  <span class="dropdown_link">
+                    <?php echo $brand->name ?>
+                  </span>
+                </li>
+              <?php endforeach ?>
+            </ul>
+          <?php endif; ?>
 
           <li class="post_item">
             <div class="dropdown js-size-btn">
-              <span>Välj storlek</span>
-              <input type="hidden" name="post_size" value="">
+              <label class="dropdown_label">Storlek</label>
+                <span>Välj storlek</span>
+                <input type="hidden" name="size" id="size" value="">
             </div>
           </li>
+
+          <?php if (!empty($sizes) && !is_wp_error($sizes)): ?>
+            <ul class="dropdown_list ui-list js-size-list">
+              <?php foreach ($sizes as $size): ?>
+                <li class="dropdown_item js-size-item" data-size="<?php echo $size->slug ?>">
+                  <span class="dropdown_link">
+                    <?php echo $size->name ?>
+                  </span>
+                </li>
+              <?php endforeach ?>
+            </ul>
+          <?php endif; ?>
 
           <li class="post_item">
             <div class="dropdown js-region-btn">
-              <span>Välj område</span>
-              <input type="hidden" name="post_region" value="">
+              <label class="dropdown_label">Område</label>
+                <span>Välj område</span>
+                <input type="hidden" name="region" id="region" value="">
             </div>
+          </li>
+            
+          <?php if (!empty($regions) && !is_wp_error($regions)): ?>
+            <ul class="dropdown_list ui-list js-region-list">
+              <?php foreach ($regions as $region): ?>
+                <li class="dropdown_item js-region-item" data-region="<?php echo $region->slug ?>">
+                  <span class="dropdown_link">
+                    <?php echo $region->name ?>
+                  </span>
+                </li>
+              <?php endforeach ?>
+            </ul>
+          <?php endif; ?>
+
+        </ul>
+
+        <ul class="post_list ui-list">
+          <h4 class="spec_title spec_title--contact">Kontakt</h4>
+          <li class="post_item">
+            <input type="text" class="post_phone post_input" name="post_phone" value="" placeholder="Telefon (valfritt)"/>
           </li>
         </ul>
 
-        <?php if (!empty($categories) && !is_wp_error($categories)): ?>
+        <div class="post_submit--wrap">
+          <button name="post_submit" class="post_submit" title="Publicera annons">Publicera</button>
+          <!-- <input type="hidden" name="action" value="Post"/> -->
+          <input type="hidden" name="post_type" value="Annons"/>
+        </div>
 
-          <ul class="dropdown_list ui-list js-category-list">
-            <?php foreach ($categories as $category): ?>
-              <li class="dropdown_item js-category-item" data-category="<?php echo $category->slug ?>">
-                <span class="dropdown_link">
-                  <?php echo $category->name ?>
-                </span>
-              </li>
-            <?php endforeach ?>
-          </ul>
-
-        <?php endif; ?>
-
-        <?php if (!empty($brands) && !is_wp_error($brands)): ?>
-
-          <ul class="dropdown_list ui-list js-brand-list">
-            <?php foreach ($brands as $brand): ?>
-              <li class="dropdown_item js-brand-item" data-brand="<?php echo $brand->slug ?>">
-                <span class="dropdown_link">
-                  <?php echo $brand->name ?>
-                </span>
-              </li>
-            <?php endforeach ?>
-          </ul>
-
-        <?php endif; ?>
-
-        <?php if (!empty($sizes) && !is_wp_error($sizes)): ?>
-
-          <ul class="dropdown_list ui-list js-size-list">
-            <?php foreach ($sizes as $size): ?>
-              <li class="dropdown_item js-size-item" data-size="<?php echo $size->slug ?>">
-                <span class="dropdown_link">
-                  <?php echo $size->name ?>
-                </span>
-              </li>
-            <?php endforeach ?>
-          </ul>
-
-        <?php endif; ?>
-
-        <?php if (!empty($regions) && !is_wp_error($regions)): ?>
-
-          <ul class="dropdown_list ui-list js-region-list">
-            <?php foreach ($regions as $region): ?>
-              <li class="dropdown_item js-region-item" data-region="<?php echo $region->slug ?>">
-                <span class="dropdown_link">
-                  <?php echo $region->name ?>
-                </span>
-              </li>
-            <?php endforeach ?>
-          </ul>
-
-          <!-- <ul class="post_list ui-list">
-            <li class="post_item">
-              <button name="submit" class="post_submit" title="Publicera annons">Publicera</button>
-              <input type="hidden" name="action" value="Post"/>
-              <input type="hidden" name="post_type" value="Annons"/>
-            </li>
-          </ul> -->
-
-          <div class="post_submit--wrap">
-            <button name="submit" class="post_submit" title="Publicera annons">Publicera</button>
-            <input type="hidden" name="action" value="Post"/>
-            <input type="hidden" name="post_type" value="Annons"/>
-          </div>
-
-        <?php endif; ?>
-        
       </div>
     </div>
   </form>

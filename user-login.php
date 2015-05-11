@@ -8,8 +8,8 @@
   </div>
     
   <div class="login_help">
-    <a href="#" class="login_lost-pwd">Har du glömt ditt lösenord?</a>
-
+    <a href="/reset" class="login_lost-pwd">Har du glömt ditt lösenord?</a>
+    <!-- <a class="lost" href="<?php echo wp_lostpassword_url(); ?>">Lost your password?</a> -->
     <p class="login_copy">Har du inget konto?</p>
 
     <form method="post" class="login_signup--form" action="<?php echo home_url('/registrera-dig') ?>">

@@ -671,12 +671,9 @@ h4 {
 
 .post_file--preview {
   width: 100%;
-  height: 0;
+  height: auto;
   margin-top: 48px;
   margin-bottom: 72px;
-  background-position: center center;
-  background-size: cover;
-  border-radius: 2px;
   display: inline-block; }
 
 .post_title {
@@ -722,19 +719,43 @@ h4 {
       font-size: 24px; } }
 
 .post_details {
+  position: relative;
   margin-top: 72px; }
 
-.post_list {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 0; }
+.post_details--price {
+  position: absolute;
+  top: -125px;
+  right: -6px;
+  width: 110px;
+  height: 110px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #4d525c;
+  border-radius: 110px;
+  border: 6px solid #eee; }
+  @media (min-width: 800px) {
+    .post_details--price {
+      position: absolute;
+      top: -140px;
+      width: 140px;
+      height: 140px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      background-color: #4d525c;
+      border-radius: 140px;
+      border: 6px solid #eee; } }
+
+.price-wrap--details {
+  position: relative;
+  top: 38px;
+  text-align: center; }
+  @media (min-width: 800px) {
+    .price-wrap--details {
+      position: relative;
+      top: 50px;
+      text-align: center; } }
 
 .post_item {
   display: -webkit-flex;
@@ -871,8 +892,8 @@ h4 {
   padding: 10px 16px;
   margin-bottom: 2px;
   width: 100%;
-  color: #fff;
-  background-color: #4d525c;
+  background-color: #fafafa;
+  border-right: 2px solid #eee;
   clear: left; }
   @media (min-width: 410px) {
     .spec_label {
@@ -895,6 +916,10 @@ h4 {
   background-color: #fc7d46;
   clear: left; }
 
+.spec_title--contact {
+  margin-top: 0;
+  background-color: #4d525c; }
+
 .post_submit--wrap {
   margin-top: 48px;
   margin-bottom: 48px;
@@ -908,7 +933,7 @@ h4 {
   font-size: 13px;
   font-weight: 400;
   color: #fff;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   border: 0;
   border-radius: 2px;
   text-transform: uppercase;
@@ -1099,6 +1124,59 @@ h4 {
     .post_start--publish {
       padding: 24px 48px; } }
 
+.post_email-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(58, 62, 73, 0.95); }
+  .post_email-bg.active {
+    display: block; }
+
+.post_email--message {
+  position: absolute;
+  left: 50%;
+  width: 300px;
+  height: auto;
+  padding: 24px;
+  margin-left: -150px;
+  color: #373737;
+  text-align: center;
+  background-color: #fff;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%); }
+
+.post_start--email {
+  display: inline-block;
+  padding: 12px 18px;
+  margin-top: 48px;
+  margin-right: 1px;
+  margin-left: 1px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 0;
+  background-color: #73b44d;
+  outline: none; }
+  .post_start--email:hover {
+    background-color: #61ac34; }
+  @media screen and (min-width: 800px) {
+    .post_start--email {
+      padding: 24px 48px; } }
+
 .post_image {
   width: 100%;
   border-radius: 2px; }
@@ -1108,6 +1186,16 @@ h4 {
 .post-list {
   margin-top: 72px;
   margin-bottom: 72px; }
+
+.post_list {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  padding: 0;
+  margin: 48px 0 0 0; }
 
 .post-list_list {
   display: -webkit-flex;
@@ -1119,6 +1207,16 @@ h4 {
   padding: 0;
   margin-right: -12px;
   margin-left: -12px; }
+
+.post-list_single {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  padding: 0;
+  margin: 0 0 32px 0; }
 
 .post-list_item {
   display: -webkit-flex;
@@ -1378,7 +1476,7 @@ h4 {
   border: 6px solid #ededed;
   border-radius: 100px;
   background-color: #fff; }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 800px) {
     .search_price-from, .search_price-to {
       width: 160px;
       height: 160px;

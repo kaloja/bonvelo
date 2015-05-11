@@ -46,6 +46,13 @@ require_once 'includes/bonvelo_publish-post.php';
 
 
 
+/* Update user email
+============================================================================ */
+
+require_once 'includes/bonvelo_update-email.php';
+
+
+
 /* Custom post types
 ============================================================================ */
 
